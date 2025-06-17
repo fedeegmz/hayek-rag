@@ -8,9 +8,13 @@ wheels/
 
 # Virtual environments
 .venv
+venv/
 
 # Environment
 .env
 
 # IDE
 .idea
+
+# Documents
+temp/
