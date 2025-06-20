@@ -1,0 +1,16 @@
+import voyageai
+from typing_extensions import override
+
+from app.core.config import config
+from app.document.domain.embedding_generator import EmbeddingGenerator
+
+
+class VoyageEmbeddingGenerator(EmbeddingGenerator):
+    def __init__(self):
+        self.model = "voyage-3-large"
+        self.client = voyageai.AsyncClient(api_key=config.embedding_api_key)
+
+    @override
+    async def generate(self, data: list[str]) -> list[list[int | float]]:
+        result = await self.client.embed(texts=data, model=self.model)
+        return result.embeddings

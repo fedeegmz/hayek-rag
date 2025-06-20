@@ -3,6 +3,7 @@ from typing import AsyncGenerator
 
 from fastapi import FastAPI
 
+from app.document.infrastructure.document_router import router as document_router
 from app.shared.infrastructure.dependencies.database import db_client
 from app.shared.infrastructure.exception_handler import exception_handler
 
@@ -16,3 +17,5 @@ async def lifespan(_: FastAPI) -> AsyncGenerator[None, None]:
 
 app = FastAPI(lifespan=lifespan)
 exception_handler(app)
+
+app.include_router(document_router)
