@@ -1,14 +1,14 @@
 import voyageai
 from typing_extensions import override
 
-from app.core.config import config
+from app.core.settings import settings
 from app.document.domain.embedding_generator import EmbeddingGenerator
 
 
 class VoyageEmbeddingGenerator(EmbeddingGenerator):
     def __init__(self):
         self.model = "voyage-3-large"
-        self.client = voyageai.AsyncClient(api_key=config.embedding_api_key)
+        self.client = voyageai.AsyncClient(api_key=settings.embedding_api_key)
 
     @override
     async def generate(self, data: list[str]) -> list[list[int | float]]:

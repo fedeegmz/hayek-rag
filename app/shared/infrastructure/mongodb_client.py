@@ -8,7 +8,7 @@ from motor.motor_asyncio import (
 )
 from pymongo.errors import ConnectionFailure
 
-from app.core.config import config
+from app.core.settings import settings
 from app.shared.domain.exceptions import (
     DatabaseConnectionException,
     UninitializedException,
@@ -22,7 +22,7 @@ class MongoDBClient:
 
     async def connect(self):
         try:
-            self._client = AsyncIOMotorClient(config.mongodb_uri)
+            self._client = AsyncIOMotorClient(settings.mongodb_uri)
             self._db = self._client.hayek
         except ConnectionFailure:
             raise DatabaseConnectionException()

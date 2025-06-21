@@ -13,7 +13,7 @@ from app.document.infrastructure.pdf_hanlder_impl import PdfHandlerImpl
 from app.document.infrastructure.voyage_embedding_generator import (
     VoyageEmbeddingGenerator,
 )
-from app.shared.infrastructure.dependencies.database import DbSession
+from app.shared.infrastructure.di.database import DbSession
 
 
 def _get_repository(db_session: DbSession) -> DocumentRepository:

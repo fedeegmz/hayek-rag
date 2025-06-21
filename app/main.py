@@ -4,7 +4,7 @@ from typing import AsyncGenerator
 from fastapi import FastAPI
 
 from app.document.infrastructure.document_router import router as document_router
-from app.shared.infrastructure.dependencies.database import db_client
+from app.shared.infrastructure.di.database import db_client
 from app.shared.infrastructure.exception_handler import exception_handler
 
 
