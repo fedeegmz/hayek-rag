@@ -5,7 +5,7 @@ from app.shared.domain.embeddings import Embeddings
 
 
 class VoyageEmbeddingGenerator:
-    def __init__(self):
+    def __init__(self) -> None:
         self.model = "voyage-3-large"
         self.client = voyageai.AsyncClient(api_key=settings.embedding_api_key)
 

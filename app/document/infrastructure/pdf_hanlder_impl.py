@@ -7,7 +7,7 @@ from app.shared.domain.exceptions import UninitializedException
 
 
 class PdfHandlerImpl(PdfHandler):
-    def __init__(self):
+    def __init__(self) -> None:
         self.reader: PdfReader | None = None
 
     @override

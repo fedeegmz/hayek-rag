@@ -1,5 +1,6 @@
 import os
 import shutil
+from typing import Annotated
 
 from fastapi import APIRouter, UploadFile, File, Body, status, Path
 
@@ -10,14 +11,10 @@ from app.shared.domain.exceptions import IllegalArgumentException
 router = APIRouter(prefix="/document", tags=["Document"])
 
 
-@router.post(
-    "/",
-    status_code=status.HTTP_201_CREATED,
-    response_model=BaseDocument,
-)
+@router.post("/", status_code=status.HTTP_201_CREATED, response_model=BaseDocument)
 async def register_document(
+    document: Annotated[BaseDocument, Body(...)],
     save_document_service: SaveDocumentDi,
-    document: BaseDocument = Body(...),
 ):
     await save_document_service.register_document(document=document)
     return document
@@ -29,13 +26,13 @@ async def register_document(
     response_model=str,
 )
 async def process_file(
+    document_id: Annotated[str, Path(...)],
+    file: Annotated[UploadFile, File(...)],
     save_document_service: SaveDocumentDi,
-    document_id: str = Path(...),
-    file: UploadFile = File(...),
 ):
     if file.content_type != "application/pdf" and not file.filename.endswith(".pdf"):
         raise IllegalArgumentException(
-            message="Invalid file type. Only PDF files are allowed"
+            message="Invalid file type. Only PDF files are allowed",
         )
 
     temp_dir = "temp"
@@ -48,6 +45,7 @@ async def process_file(
 
     # TODO: background task
     await save_document_service.process_embeddings(
-        document_id=document_id, path=file_path
+        document_id=document_id,
+        path=file_path,
     )
     return document_id

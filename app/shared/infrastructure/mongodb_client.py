@@ -20,14 +20,14 @@ class MongoDBClient:
         self._client: AsyncIOMotorClient | None = None
         self._db: AsyncIOMotorDatabase | None = None
 
-    async def connect(self):
+    async def connect(self) -> None:
         try:
             self._client = AsyncIOMotorClient(settings.mongodb_uri)
             self._db = self._client.hayek
         except ConnectionFailure:
             raise DatabaseConnectionException()
 
-    async def close(self):
+    async def close(self) -> None:
         if self._client is not None:
             self._client.close()
 

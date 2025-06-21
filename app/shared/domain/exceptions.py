@@ -7,7 +7,9 @@ class AppException(Exception):
 
 class IllegalArgumentException(AppException):
     def __init__(
-        self, message: str = "Illegal argument", detail: str | None = None
+        self,
+        message: str = "Illegal argument",
+        detail: str | None = None,
     ) -> None:
         super().__init__(message, detail)
 
@@ -19,7 +21,9 @@ class NotFoundException(AppException):
 
 class UninitializedException(AppException):
     def __init__(
-        self, message: str = "Uninitialized", detail: str | None = None
+        self,
+        message: str = "Uninitialized",
+        detail: str | None = None,
     ) -> None:
         super().__init__(message, detail)
 

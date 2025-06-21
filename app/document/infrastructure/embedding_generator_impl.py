@@ -6,7 +6,7 @@ from app.shared.infrastructure.adapters.voyage_embedding_generator import (
 
 
 class EmbeddingGeneratorImpl(EmbeddingGenerator):
-    def __init__(self, embedding_generator: VoyageEmbeddingGenerator):
+    def __init__(self, embedding_generator: VoyageEmbeddingGenerator) -> None:
         self.embedding_generator = embedding_generator
 
     async def generate(self, data: list[str]) -> Embeddings:

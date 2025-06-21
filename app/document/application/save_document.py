@@ -12,7 +12,7 @@ class SaveDocument:
         document_repository: DocumentRepository,
         embedding_generator: EmbeddingGenerator,
         pdf_handler: PdfHandler,
-    ):
+    ) -> None:
         self.document_repository = document_repository
         self.embedding_generator = embedding_generator
         self.pdf_handler = pdf_handler

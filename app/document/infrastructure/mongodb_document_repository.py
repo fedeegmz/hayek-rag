@@ -8,14 +8,15 @@ from app.shared.domain.exceptions import NotFoundException
 
 
 class MongoDbDocumentRepository(DocumentRepository):
-    def __init__(self, db_session: AsyncClientSession):
+    def __init__(self, db_session: AsyncClientSession) -> None:
         self.db_session = db_session
         self.collection = db_session.client.hayek.documents
 
     @override
     async def find_one_by_id(self, document_id: str) -> Document:
         document = await self.collection.find_one(
-            filter={"id": document_id}, session=self.db_session
+            filter={"id": document_id},
+            session=self.db_session,
         )
         if document is not None:
             return Document(**document)
