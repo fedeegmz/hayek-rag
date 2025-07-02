@@ -78,6 +78,7 @@ unfixable = []
 [lint.per-file-ignores]
 "**/infrastructure/*_router.py" = ["ANN201"]
 "app/document/domain/document.py" = ["RUF012"]
+"app/document/domain/chunk.py" = ["RUF012"]
 
 [format]
 quote-style = "double"

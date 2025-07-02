@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from app.shared.domain.embeddings import Embeddings
+from app.shared.domain.value_objects.embeddings import Embeddings
 
 
 class EmbeddingGenerator(ABC):
