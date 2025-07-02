@@ -15,4 +15,4 @@ async def _get_db_session() -> AsyncGenerator[AsyncIOMotorClientSession, Any]:
         session.end_session()
 
 
-DbSession = Annotated[AsyncClientSession, Depends(_get_db_session)]
+DbSessionDi = Annotated[AsyncClientSession, Depends(_get_db_session)]

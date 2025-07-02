@@ -1,7 +1,7 @@
 import voyageai
 
 from app.core.settings import settings
-from app.shared.domain.embeddings import Embeddings
+from app.shared.domain.value_objects.embeddings import Embeddings
 
 
 class VoyageEmbeddingGenerator:

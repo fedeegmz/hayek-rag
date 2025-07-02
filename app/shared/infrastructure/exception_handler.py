@@ -35,6 +35,16 @@ def exception_handler(app: FastAPI) -> None:
             content={"success": False, "message": exc.message, "data": None},
         )
 
+    @app.exception_handler(exceptions.NotSaveException)
+    def not_save_exception_handler(
+        _: Request,
+        exc: exceptions.NotSaveException,
+    ) -> JSONResponse:
+        return JSONResponse(
+            status_code=status.HTTP_409_CONFLICT,
+            content={"success": False, "message": exc.message, "data": None},
+        )
+
     @app.exception_handler(exceptions.UninitializedException)
     def uninitialized_exception_handler(
         _: Request,

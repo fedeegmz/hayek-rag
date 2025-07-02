@@ -19,6 +19,11 @@ class NotFoundException(AppException):
         super().__init__(message, detail)
 
 
+class NotSaveException(AppException):
+    def __init__(self, message: str = "Not save", detail: str | None = None) -> None:
+        super().__init__(message, detail)
+
+
 class UninitializedException(AppException):
     def __init__(
         self,

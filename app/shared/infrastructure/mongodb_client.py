@@ -23,7 +23,7 @@ class MongoDBClient:
     async def connect(self) -> None:
         try:
             self._client = AsyncIOMotorClient(settings.mongodb_uri)
-            self._db = self._client.hayek
+            self._db = self._client[settings.db_name]
         except ConnectionFailure:
             raise DatabaseConnectionException()
 
