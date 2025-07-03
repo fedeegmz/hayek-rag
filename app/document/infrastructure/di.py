@@ -14,9 +14,7 @@ from app.document.infrastructure.mongodb_document_repository import (
     MongoDbDocumentRepository,
 )
 from app.document.infrastructure.pdf_hanlder_impl import PdfHandlerImpl
-from app.shared.infrastructure.adapters.voyage_embedding_generator import (
-    VoyageEmbeddingGenerator,
-)
+from app.shared.infrastructure.di.ai import VoyageEmbeddingGeneratorDi
 from app.shared.infrastructure.di.database import DbSessionDi
 
 
@@ -27,8 +25,10 @@ def _get_chunk_repository(db_session: DbSessionDi) -> ChunkRepository:
 ChunkRepositoryDi = Annotated[ChunkRepository, Depends(_get_chunk_repository)]
 
 
-def _get_embedding_generator() -> EmbeddingGenerator:
-    return EmbeddingGeneratorImpl(VoyageEmbeddingGenerator())
+def _get_embedding_generator(
+    voyage_embedding_generator: VoyageEmbeddingGeneratorDi,
+) -> EmbeddingGenerator:
+    return EmbeddingGeneratorImpl(embedding_generator=voyage_embedding_generator)
 
 
 EmbeddingGeneratorDi = Annotated[EmbeddingGenerator, Depends(_get_embedding_generator)]

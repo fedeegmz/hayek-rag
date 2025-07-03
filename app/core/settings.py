@@ -8,6 +8,7 @@ class Settings(BaseSettings):
     mongodb_uri: str = Field(...)
     db_name: str = Field(...)
     embedding_api_key: str = Field(...)
+    gemini_api_key: str = Field(...)
 
 
 settings = Settings()
