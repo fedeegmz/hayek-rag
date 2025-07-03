@@ -1,5 +1,5 @@
 from app.document.domain.embedding_generator import EmbeddingGenerator
-from app.shared.domain.embeddings import Embeddings
+from app.shared.domain.value_objects.embeddings import Embeddings
 from app.shared.infrastructure.adapters.voyage_embedding_generator import (
     VoyageEmbeddingGenerator,
 )
